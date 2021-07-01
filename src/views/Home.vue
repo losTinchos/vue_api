@@ -2,7 +2,7 @@
   <div class="home">
     <h1>{{text}}</h1>
     <div class="flex flex-wrap justify-center text-red-600">
-      <Event :key=events />
+      <Event :key=events v-bind:date="event.date"  />
       
     <div v-for="subscribers in eventSubscribers" :key="subscribers">{{subscribers.name}}</div>
 
@@ -18,8 +18,8 @@ import Event from '@/components/Event.vue'
 import axios from 'axios'
 export default {
   name: 'Home',
-  components: {HelloWorld},
-  data(){
+  components: {HelloWorld, Event}, 
+ data(){
     return{
       events:[],
       eventSubscribers: [],

@@ -22,7 +22,11 @@
 export default {
   name: 'Event',
   props: {
-    event: String
+    event: String,
+    date: Date,
+    title: String,
+    capacity: Number,
+    description: String,
   }
 }
 </script>
