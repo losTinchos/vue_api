@@ -1,6 +1,6 @@
 <template>
   <ul class="flex flex-wrap justify-center">
-          <div v-for="event in events" :key="event.id" style="width: 24rem;">
+          <div :key="event.id" style="width: 24rem;">
             <div class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
             <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
                 <p class="font-bold text-xl text-aqua" style="margin: auto">SQL/<br>PHP</p>
@@ -21,12 +21,21 @@
 <script>
 export default {
   name: 'Event',
-  props: {
-    event: String,
-    date: Date,
-    title: String,
-    capacity: Number,
-    description: String,
-  }
+  props: 
+    [
+    "event",
+    "date",
+    "title",
+    "capacity",
+    "description"
+    ],
+  methods:{
+  showSubscribers(id){
+    axios.get(`http://127.0.0.1:8000/api/events/${id}/subscribers`).then
+    (response => {this.eventSubscribers = response.data})
+    console.log(this.eventSubscribers)
+}
+}, 
+    
 }
 </script>
