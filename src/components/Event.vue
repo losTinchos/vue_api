@@ -1,5 +1,6 @@
 <template>
   <ul class="flex flex-wrap justify-center">
+     <div v-for="subscribers in eventSubscribers" :key="subscribers">{{subscribers.name}}</div>
           <div :key="event.id" style="width: 24rem;">
             <div class="flex justify-between event-card inline-flex border-2 border-blue-dark mx-3 my-3 items-center">
             <div class="bg-blue-dark flex items-center ml-4 h-24 w-36">
@@ -19,9 +20,11 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'Event',
-  props: 
+    name: 'Event',
+    eventSubscribers: [],
+    props: 
     [
     "event",
     "date",
@@ -29,6 +32,7 @@ export default {
     "capacity",
     "description"
     ],
+
   methods:{
   showSubscribers(id){
     axios.get(`http://127.0.0.1:8000/api/events/${id}/subscribers`).then
